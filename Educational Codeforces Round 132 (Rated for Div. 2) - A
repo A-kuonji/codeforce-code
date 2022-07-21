@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define rep(i, n) for(int i = 1;i <= n; i ++ )
+#define int long long
+#define pb push_back
+#define No cout << "No" << endl;
+#define Yes cout << "Yes" << endl;
+#define fi first
+#define se second
+#define all(x) (x).begin(),(x).end()
+typedef pair<int,int> pii;
+const int N = 1e5 + 10;
+const int INF = 0x3f3f3f3f;
+
+
+void solve()
+{
+    int idx; cin >> idx;
+    int cnt = 1;
+    int door[5];
+    for(int i = 1; i <= 3; i ++ ) {
+        cin >> door[i];
+    }
+
+    while(door[idx] != idx && door[idx] != 0) {
+        idx = door[idx];
+        cnt++;
+    }
+
+    if(cnt < 3) cout << "NO" << endl;
+    else cout << "YES" << endl;
+
+}
+
+signed main()
+{
+    
+    int t; //cin >> t;
+    scanf("%ld\n", &t);
+    
+    while(t--)
+        solve();
+    return 0;
+}
