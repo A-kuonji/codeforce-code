@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define rep(i, n) for(int i = 1;i <= n; i ++ )
+#define int long long
+#define pb push_back
+#define No cout << "No" << endl;
+#define Yes cout << "Yes" << endl;
+#define fi first
+#define se second
+#define all(x) (x).begin(),(x).end()
+typedef pair<int,int> pii;
+const int N = 2e5 + 10;
+const int INF = 0x3f3f3f3f;
+
+struct ch {
+    int x;
+    int idx;
+};
+
+bool sortrule(ch a, ch b) {
+    return a.x > b.x;
+}
+
+void solve() {
+    string s; cin >> s;
+    int n; cin >> n;
+    vector<ch> a;
+    int sum = 0;
+    for(int i = 0; i < s.size(); i ++ ) {
+        ch tmp;
+        tmp.x = s[i] - 'a' + 1;
+        sum += tmp.x;
+        tmp.idx = i;
+        a.push_back(tmp);
+    }
+
+    if(sum <= n || s.size() == 0) {
+        cout << s << endl;
+        return ;
+    }
+
+    sort(a.begin(), a.end(), sortrule);//重写排序规则从大到小
+
+    char res[N];
+    for(int i = 0; i < s.size(); i ++ ) {
+        if(sum <= n) {
+            res[a[i].idx] = a[i].x + 'a' - 1;
+        }
+        else {
+            sum -= a[i].x;
+            res[a[i].idx] = ' ';
+        }
+    }
+
+    for(int i = 0; i < s.size(); i ++ ) {
+        if(res[i] != ' ') cout << res[i];
+    } 
+    puts("");
+}
+
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
+    int t; cin >> t;
+    
+    while(t--)
+        solve();
+    return 0;
+}
